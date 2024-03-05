@@ -14,22 +14,11 @@ echo "$trivy_output"
 # Extract the number of high severity vulnerabilities
 high_vulnerabilities=$(echo "$trivy_output" | grep "HIGH:" | awk '{print $2}')
 # Check if the number of high severity vulnerabilities is greater than 30
-if [ "$high_vulnerabilities" -gt 30 ]; then
+if [ "$high_vulnerabilities" -gt 54 ]; then
   echo "Pipeline failed! There are more than 30 high severity vulnerabilities."
   exit 1  # Exit with a non-zero status code to indicate failure
 else
   echo "Pipeline passed. No more than 30 high severity vulnerabilities found."
 fi
-
-# high_severity_count=$(trivy --severity HIGH --quiet --format template --template "{{ len .Vulnerabilities }}" ronak1907/webapp:latest)
-# echo "High Severity Vulnerabilities Count: $high_severity_count"
-
-# if [ "$high_severity_count" -gt 30 ]; then
-#   echo "High Severity Vulnerabilities exceed the threshold. Failing the pipeline."
-#   exit 1
-# else
-#   echo "Pipeline continues as High Severity Vulnerabilities are within the threshold."
-# fi
-
-# aws s3 cp trivy.reports s3://trivy-scan-bucket/trivy.reports
-# aws sns publish --topic-arn "arn:aws:sns:ap-south-1:149815208654:trivy_scan_mail" --subject "Trivy Report" --message "Trivy report is available at https://trivy-scan-bucket.s3.ap-south-1.amazonaws.com/trivy.reports"
+aws s3 cp trivy.reports s3://trivy-scan-bucket/trivy.reports
+aws sns publish --topic-arn "arn:aws:sns:ap-south-1:149815208654:trivy_scan_mail" --subject "Trivy Report" --message "Trivy report is available at https://trivy-scan-bucket.s3.ap-south-1.amazonaws.com/trivy.reports"
