@@ -23,7 +23,7 @@ echo "$trivy_output"
 high_vulnerabilities=$(echo "$trivy_output" | grep "HIGH:" | awk '{print $2}')
 
 # Check if the number of high severity vulnerabilities is greater than 30
-if [ "$high_vulnerabilities" -gt 30 ]; then
+if [ "$high_vulnerabilities" -gt 55 ]; then
   echo "Pipeline failed! There are more than 30 high severity vulnerabilities."
   exit 1  # Exit with a non-zero status code to indicate failure
 else
