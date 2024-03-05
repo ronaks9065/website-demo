@@ -4,7 +4,7 @@ echo "Pulling Docker image from Docker Hub"
 docker pull ronak1907/webapp:latest
 
 # current date and time for name
-current_datetime=$(date +"%d/%m/%Y/%M:%H")
+current_datetime=$(date +"%d:%m:%Y:%M:%H")
 report_filename="trivy.reports.${current_datetime}"
 
 echo "Scanning Docker image using Trivy"
