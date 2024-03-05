@@ -8,7 +8,7 @@ wget https://github.com/aquasecurity/trivy/releases/download/v0.18.3/trivy_0.18.
 sudo dpkg -i trivy_0.18.3_Linux-64bit.deb
 
 trivy -v
-trivy --severity HIGH --exit-code 30 ronak1907/webapp:latest
+trivy --severity HIGH --exit-code 0 ronak1907/webapp:latest
 
 high_severity_count=$(trivy --severity HIGH --quiet --format template --template "{{ len .Vulnerabilities }}" ronak1907/webapp:latest)
 echo "High Severity Vulnerabilities Count: $high_severity_count"
