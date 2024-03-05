@@ -29,6 +29,6 @@ if [ "$high_vulnerabilities" -gt 54 ]; then
 else
   echo "Pipeline passed. No more than 30 high severity vulnerabilities found."
 fi
-trivy --severity LOW,MEDIUM,HIGH ronak1907/webapp:latest > "$report_filename"
-aws s3 cp "$report_filename" s3://trivy-scan-bucket/"$report_filename"
-aws sns publish --topic-arn "arn:aws:sns:ap-south-1:149815208654:trivy_scan_mail" --subject "Trivy Report" --message "Trivy report is available at https://trivy-scan-bucket.s3.ap-south-1.amazonaws.com/${report_filename}"
+trivy --severity LOW,MEDIUM,HIGH ronak1907/webapp:latest > trivy.reports
+aws s3 cp trivy.reports s3://trivy-scan-bucket/trivy.reports
+aws sns publish --topic-arn "arn:aws:sns:ap-south-1:149815208654:trivy_scan_mail" --subject "Trivy Report" --message "Trivy report is available at https://trivy-scan-bucket.s3.ap-south-1.amazonaws.com/trivy.reports"
