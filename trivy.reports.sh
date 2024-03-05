@@ -9,6 +9,8 @@ sudo dpkg -i trivy_0.18.3_Linux-64bit.deb
 
 trivy -v
 trivy --severity HIGH --exit-code 0 ronak1907/webapp:latest
+trivy_output=$(trivy --severity HIGH --exit-code 0 ronak1907/webapp:latest)
+echo "$trivy_output"
 
 # high_severity_count=$(trivy --severity HIGH --quiet --format template --template "{{ len .Vulnerabilities }}" ronak1907/webapp:latest)
 # echo "High Severity Vulnerabilities Count: $high_severity_count"
