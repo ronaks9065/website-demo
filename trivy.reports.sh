@@ -5,7 +5,7 @@ docker pull ronak1907/webapp:latest
 
 # current date and time for name
 current_datetime=$(TZ="Asia/Kolkata" date +"%d.%m.%Y.%M.%H")
-report_filename="trivy.reports.${current_datetime}"
+report_filename="trivy.reports.${current_datetime}.html"
 
 echo "Scanning Docker image using Trivy"
 wget https://github.com/aquasecurity/trivy/releases/download/v0.18.3/trivy_0.18.3_Linux-64bit.deb 
