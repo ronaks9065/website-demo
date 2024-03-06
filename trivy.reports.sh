@@ -33,6 +33,6 @@ trivy --severity LOW,MEDIUM,HIGH ronak1907/webapp:latest > "$report_filename"
 aws s3 cp "$report_filename" s3://trivy-scan-bucket/"$report_filename"
 # aws sns publish --topic-arn "arn:aws:sns:ap-south-1:149815208654:trivy_scan_mail" --subject "Trivy Report" --message "Trivy report is available at view-source:https://trivy-scan-bucket.s3.ap-south-1.amazonaws.com/$report_filename View Trivy Scan Report."
 report_link="https://trivy-scan-bucket.s3.ap-south-1.amazonaws.com/$report_filename"
-message="Trivy report is available at <a href=\"$report_link\">$report_link</a>. View Trivy Scan Report."
+message="Trivy report is available at <a href=\"view-source:$report_link\">Link : $report_link</a>. View Trivy Scan Report."
 
 aws sns publish --topic-arn "arn:aws:sns:ap-south-1:149815208654:trivy_scan_mail" --subject "Trivy Report" --message "$message" --message-structure "string"
